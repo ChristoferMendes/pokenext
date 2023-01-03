@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title {
+  margin-bottom: 2em;
+}
+
+.redirect {
+  text-decoration: none;
+  color: #333;
+  font-size: 2em;
+}
+
+.redirect span {
+  color: #ff0000;
+  border-bottom: 2px solid transparent;
+}
+
+.redirect span:hover {
+  transition: .8s;
+  border-color: #ff0000;
+}
