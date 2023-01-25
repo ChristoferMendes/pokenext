@@ -18,7 +18,7 @@ export default function Card({ pokemon }: ASinglePokemon) {
   return (
     <div className={styles.card}>
       <Image
-        src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`}
+        src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
         width={'120'}
         height={'120'}
         alt={`${pokemon.name} image`}

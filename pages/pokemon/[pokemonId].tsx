@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Image from 'next/image';
+import Image, { ImageLoader, ImageLoaderProps } from 'next/image';
 import { ASinglePokemon } from '../../components/Card';
 
 import styles from '../../styles/Pokemon.module.css';
@@ -9,12 +9,13 @@ import { Loading } from '../../components/Loading';
 
 const maxPokemons = 251;
 const api = 'https://pokeapi.co/api/v2/pokemon/';
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${api}/?limit=${maxPokemons}`);
   const data = await res.json();
 
   //Add a index manually
-  const paths = data.results.map((any: any, index: number) => {
+  const paths = data.results.map((_: any, index: number) => {
     return {
       params: { pokemonId: (index + 1).toString() },
     };
@@ -44,16 +45,15 @@ export default function Pokemon({ pokemon }: ASinglePokemon) {
     return <Loading />;
   }
 
+  const myLoader = ({ src }: ImageLoaderProps) => {
+    return `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${src}.svg`;
+  };
+
   const { id, name, types, height, weight } = pokemon;
   return (
     <div className={styles.pokemon_container}>
       <h1 className={styles.title}>{name}</h1>
-      <Image
-        src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`}
-        width={'200'}
-        height={'200'}
-        alt={`${name} image`}
-      />
+      <Image src={String(id)} width={'200'} height={'200'} alt={`${name} image`} loader={myLoader} />
       <div>
         <h3>Number: </h3>
         <p>#{id}</p>
