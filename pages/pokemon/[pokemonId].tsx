@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Image, { ImageLoader, ImageLoaderProps } from 'next/image';
+import Image, { ImageLoaderProps } from 'next/image';
 import { ASinglePokemon } from '../../components/Card';
 
 import styles from '../../styles/Pokemon.module.css';
